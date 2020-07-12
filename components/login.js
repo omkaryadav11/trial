@@ -10,6 +10,8 @@ import {
   Button,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
+  Alert
 } from "react-native";
 
 
@@ -47,7 +49,7 @@ export default class login extends React.Component {
           email: '', 
           password: ''
         })
-        this.props.navigation.navigate('Dashboard')
+        this.props.navigation.navigate('home')
       })
       .catch(error => this.setState({ errorMessage: error.message }))
     }
@@ -96,17 +98,17 @@ export default class login extends React.Component {
 
         <View style={styles.view2}>
           <TextInput
-            name ="email"
+            
             placeholder="Username"
             style={[styles.username, { marginBottom: 30 }]}
             onChangeText={(val)=> this.updateInputVal(val,'email')}
             value={this.state.email}
           />
           <TextInput
-          name="password"
+          
             placeholder="Password"
             style={[styles.username, { marginBottom: 30 }]}
-            onChangeT={(val)=>this.updateInputVal(val,'password')}
+            onChangeText={(val)=>this.updateInputVal(val,'password')}
             value={this.state.password}
             maxLength={8}
             secureTextEntry

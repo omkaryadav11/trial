@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import firebase from '../config/firebase';
 
-import { StyleSheet, Text, View,Image, Button,TextInput,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View,Image, Button,TextInput,TouchableOpacity, ActivityIndicator, Alert  } from 'react-native';
 
 export default class login extends React.Component {
 
@@ -44,13 +44,13 @@ export default class login extends React.Component {
           email: '', 
           password: ''
         })
-        this.props.navigation.navigate('Login')
+        this.props.navigation.navigate('login')
       })
       .catch(error => this.setState({ errorMessage: error.message }))      
     }
   }
   render(){
-    if(this.state.isLoading){
+    if(this.state.isLoading) {
       return(
         <View style={styles.preloader}>
           <ActivityIndicator size="large" color="#9E9E9E"/>
@@ -85,12 +85,12 @@ export default class login extends React.Component {
             value={this.state.email} />
        
         <TextInput placeholder="Password" style={[styles.username,{marginBottom:30}]}
-          onChangeT={(val)=> this.updateInputVal(val,'password')}
+          onChangeText={(val)=> this.updateInputVal(val,'password')}
             value={this.state.password} 
               maxLength={8}
               secureTextEntry
             />
-        <Button title="Sign up" color="black" onPress={this.props.navigation.navigate("home")}/>
+        <Button title="Sign up" color="black" onPress={()=>this.registerUser()}/>
       </View>
 
 
